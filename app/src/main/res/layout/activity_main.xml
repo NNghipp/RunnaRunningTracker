@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Root dùng LinearLayout theo yêu cầu project -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_app_surface">
+    android:background="@drawable/bg_app_surface"
+    android:orientation="vertical">
 
+    <!-- Màn Login -->
     <ScrollView
         android:id="@+id/loginScreen"
         android:layout_width="match_parent"
@@ -36,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Runna"
+                    android:text="@string/brand_name"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -46,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Welcome back! Ready to run?"
+                android:text="@string/welcome_back_ready"
                 android:textColor="@color/runna_text_secondary"
                 android:textSize="16sp" />
 
@@ -54,10 +57,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
-                android:text="Email *"
+                android:text="@string/email_batbuoc"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+            <!-- điền mail bắt buộc -->
 
             <EditText
                 android:id="@+id/loginEmailInput"
@@ -65,17 +69,18 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_input"
-                android:hint="Email"
+                android:hint="@string/hint_email"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textColorHint="@color/runna_text_secondary"
                 android:textSize="17sp" />
+            <!-- ô nhập mail -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Password *"
+                android:text="@string/password_batbuoc"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -86,7 +91,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_input"
-                android:hint="Enter your password"
+                android:hint="@string/hint_password"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textColorHint="@color/runna_text_secondary"
@@ -98,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="14dp"
-                android:text="Forgot password?"
+                android:text="@string/forgot_password"
                 android:textColor="@color/runna_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -109,10 +114,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
-                android:text="Don't have an account? Register"
+                android:text="@string/register_prompt"
                 android:textAlignment="center"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="16sp" />
+            <!-- để giữa, chữ Register đang đổi màu cam bằng code -->
 
             <Button
                 android:id="@+id/loginButton"
@@ -121,13 +127,15 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
+            <!-- nút login chính -->
         </LinearLayout>
     </ScrollView>
 
+    <!-- Màn Register -->
     <ScrollView
         android:id="@+id/registerScreen"
         android:layout_width="match_parent"
@@ -151,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -160,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Start your running journey"
+                android:text="@string/start_running_journey"
                 android:textColor="@color/runna_text_secondary" />
 
             <EditText
@@ -169,7 +177,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="28dp"
                 android:background="@drawable/bg_input"
-                android:hint="Your Name"
+                android:hint="@string/hint_name"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary" />
 
@@ -179,7 +187,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_input"
-                android:hint="Email"
+                android:hint="@string/hint_email"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary" />
 
@@ -189,7 +197,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_input"
-                android:hint="Create a password"
+                android:hint="@string/hint_create_password"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary" />
 
@@ -199,7 +207,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_input"
-                android:hint="Confirm your password"
+                android:hint="@string/hint_confirm_password"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary" />
 
@@ -210,12 +218,13 @@
                 android:layout_marginTop="26dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 
+    <!-- Màn nhập thông tin cá nhân sau khi register -->
     <ScrollView
         android:id="@+id/personalInfoScreen"
         android:layout_width="match_parent"
@@ -233,7 +242,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Personal Information"
+                android:text="@string/personal_information"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -242,7 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Complete your profile before entering Runna"
+                android:text="@string/complete_profile_prompt"
                 android:textColor="@color/runna_text_secondary"
                 android:textSize="16sp" />
 
@@ -252,7 +261,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="28dp"
                 android:background="@drawable/bg_input"
-                android:hint="Full name"
+                android:hint="@string/hint_full_name"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -264,7 +273,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
                 android:enabled="false"
-                android:hint="Email"
+                android:hint="@string/hint_email"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -275,7 +284,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
-                android:hint="Age"
+                android:hint="@string/hint_age"
                 android:inputType="number"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
@@ -287,7 +296,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
-                android:hint="Gender"
+                android:hint="@string/hint_gender"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -298,7 +307,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
-                android:hint="Height (cm)"
+                android:hint="@string/hint_height_cm"
                 android:inputType="number"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
@@ -310,7 +319,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
-                android:hint="Weight (kg)"
+                android:hint="@string/hint_weight_kg"
                 android:inputType="number"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
@@ -323,25 +332,27 @@
                 android:layout_marginTop="22dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Continue"
+                android:text="@string/continue_label"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
         </LinearLayout>
     </ScrollView>
 
+    <!-- Main app sau khi login thành công -->
     <LinearLayout
         android:id="@+id/appScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ScrollView
                 android:id="@+id/homeScreen"
@@ -358,7 +369,7 @@
                         android:id="@+id/homeWelcomeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Welcome back, Nghi"
+                        android:text="@string/welcome_back_sample"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="34sp"
                         android:textStyle="bold" />
@@ -368,7 +379,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Ready for your next run?"
+                        android:text="@string/ready_next_run"
                         android:textColor="@color/runna_text_secondary"
                         android:textSize="16sp" />
 
@@ -378,7 +389,7 @@
                         android:layout_height="62dp"
                         android:layout_marginTop="22dp"
                         android:background="@drawable/bg_button_primary"
-                        android:text="Start Running"
+                        android:text="@string/start_running"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -396,7 +407,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_card_subtle"
                             android:gravity="center"
-                            android:text="12.5 km\nTotal Distance"
+                            android:text="@string/total_distance_card"
                             android:textAlignment="center"
                             android:textColor="@color/runna_text_primary"
                             android:textSize="18sp" />
@@ -408,7 +419,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_card_subtle"
                             android:gravity="center"
-                            android:text="5:32\nAvg Pace"
+                            android:text="@string/avg_pace_card"
                             android:textAlignment="center"
                             android:textColor="@color/runna_text_primary"
                             android:textSize="18sp" />
@@ -421,7 +432,7 @@
                         android:layout_marginTop="18dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="22dp"
-                        android:text="Recent Activity\nEasy Run | 5.2 km | 28:45\nLong Run | 10.0 km | 58:30"
+                        android:text="@string/recent_activity_text"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -442,7 +453,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Start Running"
+                        android:text="@string/start_running"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -451,7 +462,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Choose your workout type"
+                        android:text="@string/choose_workout_type"
                         android:textColor="@color/runna_text_secondary"
                         android:textSize="16sp" />
 
@@ -462,7 +473,7 @@
                         android:layout_marginTop="18dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Easy Run\nLight pace, comfortable breathing"
+                        android:text="@string/easy_run_desc"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -473,7 +484,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Long Run\nExtended distance at steady pace"
+                        android:text="@string/long_run_desc"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -484,7 +495,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Interval\nHigh intensity with rest periods"
+                        android:text="@string/interval_desc"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -495,7 +506,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Walking\nCasual walk or recovery"
+                        android:text="@string/walking_desc"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -506,7 +517,7 @@
                         android:layout_marginTop="22dp"
                         android:background="@drawable/bg_button_primary"
                         android:backgroundTint="@null"
-                        android:text="Start Run"
+                        android:text="@string/start_run"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
@@ -528,7 +539,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Run History"
+                        android:text="@string/run_history"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -537,7 +548,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="March 2026"
+                        android:text="@string/history_month"
                         android:textColor="@color/runna_text_secondary"
                         android:textSize="16sp" />
 
@@ -547,7 +558,7 @@
                         android:layout_marginTop="16dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Easy Run\n5.2 km | 28:45 | Pace 5:32"
+                        android:text="@string/history_easy_item"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -557,7 +568,7 @@
                         android:layout_marginTop="12dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Long Run\n10.0 km | 58:30 | Pace 5:51"
+                        android:text="@string/history_long_item"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -578,7 +589,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="@string/profile"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="30sp"
                         android:textStyle="bold" />
@@ -587,7 +598,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Manage your personal running details"
+                        android:text="@string/profile_subtitle"
                         android:textColor="@color/runna_text_secondary"
                         android:textSize="16sp" />
 
@@ -598,7 +609,7 @@
                         android:layout_marginTop="18dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="22dp"
-                        android:text="Nghi\nnghi@gmail.com\nAge 19 | Female\nHeight 165 cm | Weight 62 kg"
+                        android:text="@string/profile_info_sample"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp" />
 
@@ -609,7 +620,7 @@
                         android:layout_marginTop="14dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Edit Profile"
+                        android:text="@string/edit_profile"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -621,7 +632,7 @@
                         android:layout_marginTop="14dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="App Information"
+                        android:text="@string/app_information"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -633,13 +644,13 @@
                         android:layout_marginTop="14dp"
                         android:background="@drawable/bg_card_subtle"
                         android:padding="20dp"
-                        android:text="Logout"
+                        android:text="@string/logout"
                         android:textColor="@color/runna_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </ScrollView>
-        </FrameLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/bottomNav"
@@ -649,13 +660,45 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <TextView android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Home" android:textColor="@color/runna_primary" />
-            <TextView android:id="@+id/navStart" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Start" android:textColor="@color/runna_text_secondary" />
-            <TextView android:id="@+id/navHistory" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="History" android:textColor="@color/runna_text_secondary" />
-            <TextView android:id="@+id/navProfile" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Profile" android:textColor="@color/runna_text_secondary" />
+            <TextView
+                android:id="@+id/navHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home"
+                android:textColor="@color/runna_primary" />
+
+            <TextView
+                android:id="@+id/navStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/start"
+                android:textColor="@color/runna_text_secondary" />
+
+            <TextView
+                android:id="@+id/navHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/history"
+                android:textColor="@color/runna_text_secondary" />
+
+            <TextView
+                android:id="@+id/navProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/profile"
+                android:textColor="@color/runna_text_secondary" />
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Màn hình tracking -->
     <LinearLayout
         android:id="@+id/trackingScreen"
         android:layout_width="match_parent"
@@ -672,7 +715,7 @@
             android:background="@drawable/bg_chip_soft"
             android:paddingHorizontal="14dp"
             android:paddingVertical="8dp"
-            android:text="Easy" />
+            android:text="@string/run_type_easy" />
 
         <TextView
             android:layout_width="match_parent"
@@ -680,7 +723,7 @@
             android:layout_marginHorizontal="22dp"
             android:background="@drawable/bg_tracking_header"
             android:gravity="center"
-            android:text="Live Route Map\nMap placeholder for GPS polyline preview"
+            android:text="@string/live_route_map"
             android:textAlignment="center"
             android:textColor="@color/runna_text_primary" />
 
@@ -690,7 +733,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="center"
-            android:text="00:02"
+            android:text="@string/timer_default"
             android:textColor="@color/runna_text_primary"
             android:textSize="42sp"
             android:textStyle="bold" />
@@ -701,7 +744,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:gravity="center"
-            android:text="0.10 km | 5:32 pace | 6 cal"
+            android:text="@string/tracking_stats_default"
             android:textColor="@color/runna_text_secondary" />
 
         <Button
@@ -712,11 +755,12 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_button_primary"
             android:backgroundTint="@null"
-            android:text="Pause"
+            android:text="@string/pause"
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>
 
+    <!-- Popup màn pause/ tạm dừng -->
     <LinearLayout
         android:id="@+id/pauseOverlay"
         android:layout_width="match_parent"
@@ -738,7 +782,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Run Paused"
+                android:text="@string/run_paused"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -751,7 +795,7 @@
                 android:background="@drawable/bg_card_soft"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="28:45 | 5.2 km | 5:32 pace"
+                android:text="@string/pause_stats_default"
                 android:textColor="@color/runna_text_primary" />
 
             <Button
@@ -761,7 +805,7 @@
                 android:layout_marginTop="18dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Resume"
+                android:text="@string/resume"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
@@ -772,12 +816,13 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_button_outline"
                 android:backgroundTint="@null"
-                android:text="Finish Run"
+                android:text="@string/finish_run"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Màn tổng kết sau buổi chạy -->
     <LinearLayout
         android:id="@+id/summaryScreen"
         android:layout_width="match_parent"
@@ -793,7 +838,7 @@
             android:layout_height="180dp"
             android:background="@drawable/bg_summary_header"
             android:gravity="center"
-            android:text="Great Job!\nYou completed your run"
+            android:text="@string/great_job"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="28sp"
@@ -803,11 +848,11 @@
             android:id="@+id/summaryStatsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/bg_card"
             android:gravity="center"
-            android:padding="22dp"
-            android:text="Duration 28:45\nDistance 5.2 km\nAvg Pace 5:32\nCalories 338"
+            android:padding="30dp"
+            android:text="@string/summary_stats_default"
             android:textAlignment="center"
             android:textColor="@color/runna_text_primary" />
 
@@ -815,14 +860,15 @@
             android:id="@+id/summaryDoneButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/bg_button_primary"
             android:backgroundTint="@null"
-            android:text="Done"
+            android:text="@string/done"
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>
 
+    <!-- Popup hiện reset password nếu người dùng ấn quên mk -->
     <LinearLayout
         android:id="@+id/forgotPasswordOverlay"
         android:layout_width="match_parent"
@@ -838,12 +884,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_sheet"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:padding="25dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reset Password"
+                android:text="@string/reset_password"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -852,7 +898,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Enter your email to receive a reset link."
+                android:text="@string/reset_password_prompt"
                 android:textColor="@color/runna_text_secondary"
                 android:textSize="16sp" />
 
@@ -862,7 +908,7 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/bg_input"
-                android:hint="your@email.com"
+                android:hint="@string/hint_email"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -874,7 +920,7 @@
                 android:layout_marginTop="18dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Send Reset Link"
+                android:text="@string/send_reset_link"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
@@ -882,6 +928,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Popup edit profile -->
     <LinearLayout
         android:id="@+id/editProfileOverlay"
         android:layout_width="match_parent"
@@ -907,7 +954,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -918,9 +965,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="18dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Name"
+                    android:hint="@string/hint_full_name"
                     android:paddingHorizontal="16dp"
-                    android:text="Nghi"
+                    android:text="@string/sample_name"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -930,9 +977,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Email"
+                    android:hint="@string/hint_email"
                     android:paddingHorizontal="16dp"
-                    android:text="nghi@gmail.com"
+                    android:text="@string/sample_email"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -942,9 +989,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Age"
+                    android:hint="@string/hint_age"
                     android:paddingHorizontal="16dp"
-                    android:text="19"
+                    android:text="@string/sample_age"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -954,9 +1001,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Gender"
+                    android:hint="@string/hint_gender"
                     android:paddingHorizontal="16dp"
-                    android:text="Female"
+                    android:text="@string/sample_gender"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -966,9 +1013,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Height (cm)"
+                    android:hint="@string/hint_height_cm"
                     android:paddingHorizontal="16dp"
-                    android:text="165"
+                    android:text="@string/sample_height"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -978,9 +1025,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="Weight (kg)"
+                    android:hint="@string/hint_weight_kg"
                     android:paddingHorizontal="16dp"
-                    android:text="62"
+                    android:text="@string/sample_weight"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -991,7 +1038,7 @@
                     android:layout_marginTop="18dp"
                     android:background="@drawable/bg_button_primary"
                     android:backgroundTint="@null"
-                    android:text="Save Changes"
+                    android:text="@string/save_changes"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -1000,6 +1047,7 @@
         </ScrollView>
     </LinearLayout>
 
+    <!-- Popup app in4 -->
     <LinearLayout
         android:id="@+id/appInfoOverlay"
         android:layout_width="match_parent"
@@ -1020,7 +1068,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="App Information"
+                android:text="@string/app_information"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -1031,7 +1079,7 @@
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_card_soft"
                 android:padding="18dp"
-                android:text="Runna build by nghi "
+                android:text="@string/app_info_text"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="16sp" />
 
@@ -1042,10 +1090,10 @@
                 android:layout_marginTop="18dp"
                 android:background="@drawable/bg_button_primary"
                 android:backgroundTint="@null"
-                android:text="Close"
+                android:text="@string/close"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
