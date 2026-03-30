@@ -5,6 +5,7 @@ data class User(
     val name: String = "",
     val email: String = "",
     val age: String = "",
+    val birthDate: String = "",
     val gender: String = "",
     val height: String = "",
     val weight: String = ""
@@ -15,6 +16,7 @@ data class User(
             KEY_NAME to name,
             KEY_EMAIL to email,
             KEY_AGE to age,
+            KEY_BIRTH_DATE to birthDate,
             KEY_GENDER to gender,
             KEY_HEIGHT to height,
             KEY_WEIGHT to weight
@@ -27,6 +29,7 @@ data class User(
         const val KEY_NAME = "name"
         const val KEY_EMAIL = "email"
         const val KEY_AGE = "age"
+        const val KEY_BIRTH_DATE = "birthDate"
         const val KEY_GENDER = "gender"
         const val KEY_HEIGHT = "height"
         const val KEY_WEIGHT = "weight"
@@ -38,6 +41,7 @@ data class User(
                 name = data?.get(KEY_NAME) as? String ?: "",
                 email = data?.get(KEY_EMAIL) as? String ?: "",
                 age = data?.get(KEY_AGE) as? String ?: "",
+                birthDate = data?.get(KEY_BIRTH_DATE) as? String ?: "",
                 gender = data?.get(KEY_GENDER) as? String ?: "",
                 height = data?.get(KEY_HEIGHT) as? String ?: "",
                 weight = data?.get(KEY_WEIGHT) as? String ?: ""

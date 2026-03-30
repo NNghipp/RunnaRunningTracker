@@ -29,6 +29,7 @@
     <string name="complete_profile_prompt">Complete your profile </string>
     <string name="hint_full_name">Full name</string>
     <string name="hint_age">Age</string>
+    <string name="hint_birthday">Birthday</string>
     <string name="hint_gender">Gender</string>
     <string name="hint_height_cm">Height (cm)</string>
     <string name="hint_weight_kg">Weight (kg)</string>
@@ -72,6 +73,7 @@
     <string name="sample_name">Nghi</string>
     <string name="sample_email">nghi@gmail.com</string>
     <string name="sample_age">19</string>
+    <string name="sample_birth_date">30/03/2007</string>
     <string name="sample_gender">Female</string>
     <string name="sample_height">165</string>
     <string name="sample_weight">62</string>
