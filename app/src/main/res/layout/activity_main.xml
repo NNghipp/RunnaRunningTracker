@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -284,8 +284,9 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
-                android:hint="@string/hint_age"
-                android:inputType="number"
+                android:focusable="false"
+                android:hint="@string/hint_birthday"
+                android:inputType="none"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -296,7 +297,9 @@
                 android:layout_height="64dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_input"
+                android:focusable="false"
                 android:hint="@string/hint_gender"
+                android:inputType="none"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/runna_text_primary"
                 android:textSize="17sp" />
@@ -345,7 +348,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/contentContainer"
@@ -989,9 +992,11 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
-                    android:hint="@string/hint_age"
+                    android:focusable="false"
+                    android:hint="@string/hint_birthday"
+                    android:inputType="none"
                     android:paddingHorizontal="16dp"
-                    android:text="@string/sample_age"
+                    android:text="@string/sample_birth_date"
                     android:textColor="@color/runna_text_primary"
                     android:textSize="17sp" />
 
@@ -1001,7 +1006,9 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/bg_input"
+                    android:focusable="false"
                     android:hint="@string/hint_gender"
+                    android:inputType="none"
                     android:paddingHorizontal="16dp"
                     android:text="@string/sample_gender"
                     android:textColor="@color/runna_text_primary"

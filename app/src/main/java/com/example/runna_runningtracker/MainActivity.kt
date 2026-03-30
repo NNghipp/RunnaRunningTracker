@@ -1,5 +1,6 @@
 package com.example.runna_runningtracker
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,6 +21,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.runna_runningtracker.data.model.User
 import com.example.runna_runningtracker.data.repository.AuthRepository
 import com.example.runna_runningtracker.data.repository.UserRepository
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -93,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         name = "Nghi",
         email = "nghi@gmail.com",
         age = "19",
+        birthDate = "",
         gender = "Female",
         height = "165",
         weight = "62"
@@ -128,6 +134,7 @@ class MainActivity : AppCompatActivity() {
         authRepository = AuthRepository()
         userRepository = UserRepository()
         bindViews()
+        setupProfilePickers()
         styleInlineRegisterText()
         bindActions()
         selectSection(Section.HOME)
@@ -211,6 +218,7 @@ class MainActivity : AppCompatActivity() {
 
         // Mo popup quen mat khau.
         findViewById<TextView>(R.id.forgotPasswordText).setOnClickListener {
+            loginScreen.visibility = View.GONE
             forgotPasswordOverlay.visibility = View.VISIBLE
         }
 
@@ -248,6 +256,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.editProfileButton).setOnClickListener {
             fillEditProfileForm()
+            appScreen.visibility = View.GONE
             editProfileOverlay.visibility = View.VISIBLE
         }
 
@@ -256,11 +265,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.appInfoButton).setOnClickListener {
+            appScreen.visibility = View.GONE
             appInfoOverlay.visibility = View.VISIBLE
         }
 
         findViewById<Button>(R.id.closeAppInfoButton).setOnClickListener {
             appInfoOverlay.visibility = View.GONE
+            appScreen.visibility = View.VISIBLE
+            selectSection(Section.PROFILE)
         }
 
         navHome.setOnClickListener { selectSection(Section.HOME) }
@@ -291,11 +303,13 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.pauseRunButton).setOnClickListener {
             timerHandler.removeCallbacks(timerRunnable)
+            trackingScreen.visibility = View.GONE
             pauseOverlay.visibility = View.VISIBLE
         }
 
         findViewById<Button>(R.id.resumeRunButton).setOnClickListener {
             pauseOverlay.visibility = View.GONE
+            trackingScreen.visibility = View.VISIBLE
             timerHandler.post(timerRunnable)
         }
 
@@ -311,6 +325,14 @@ class MainActivity : AppCompatActivity() {
             appScreen.visibility = View.VISIBLE
             selectSection(Section.HOME)
         }
+    }
+
+    private fun setupProfilePickers() {
+        // Gender va birthday duoc chon theo picker de tranh user nhap sai tay.
+        personalGenderInput.setOnClickListener { showGenderPicker(personalGenderInput) }
+        editGenderInput.setOnClickListener { showGenderPicker(editGenderInput) }
+        personalAgeInput.setOnClickListener { showBirthDatePicker(personalAgeInput) }
+        editAgeInput.setOnClickListener { showBirthDatePicker(editAgeInput) }
     }
 
     private fun openMainApp() {
@@ -378,7 +400,7 @@ class MainActivity : AppCompatActivity() {
         // Khi mo popup edit, do du lieu hien tai len form truoc.
         editNameInput.setText(currentUser.name)
         editEmailInput.setText(currentUser.email)
-        editAgeInput.setText(currentUser.age)
+        editAgeInput.setText(currentUser.birthDate)
         editGenderInput.setText(currentUser.gender)
         editHeightInput.setText(currentUser.height)
         editWeightInput.setText(currentUser.weight)
@@ -389,7 +411,10 @@ class MainActivity : AppCompatActivity() {
         currentUser = currentUser.copy(
             name = editNameInput.text.toString().ifBlank { currentUser.name },
             email = editEmailInput.text.toString().ifBlank { currentUser.email },
-            age = editAgeInput.text.toString().ifBlank { currentUser.age },
+            birthDate = editAgeInput.text.toString().ifBlank { currentUser.birthDate },
+            age = calculateAgeFromBirthDate(
+                editAgeInput.text.toString().ifBlank { currentUser.birthDate }
+            ),
             gender = editGenderInput.text.toString().ifBlank { currentUser.gender },
             height = editHeightInput.text.toString().ifBlank { currentUser.height },
             weight = editWeightInput.text.toString().ifBlank { currentUser.weight }
@@ -399,6 +424,8 @@ class MainActivity : AppCompatActivity() {
             // Truong hop local/demo: van cho update UI du chua co user Firebase.
             refreshProfileUi()
             editProfileOverlay.visibility = View.GONE
+            appScreen.visibility = View.VISIBLE
+            selectSection(Section.PROFILE)
             Toast.makeText(this, getString(R.string.profile_updated_locally), Toast.LENGTH_SHORT).show()
             return
         }
@@ -408,6 +435,8 @@ class MainActivity : AppCompatActivity() {
             onSuccess = {
                 refreshProfileUi()
                 editProfileOverlay.visibility = View.GONE
+                appScreen.visibility = View.VISIBLE
+                selectSection(Section.PROFILE)
                 Toast.makeText(this, getString(R.string.profile_updated), Toast.LENGTH_SHORT).show()
             },
             onFailure = { error ->
@@ -418,12 +447,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshProfileUi() {
         // Ham nay la noi dong bo currentUser -> Home/Profile.
+        val displayAge = currentUser.age.ifBlank { calculateAgeFromBirthDate(currentUser.birthDate) }
         homeWelcomeText.text = getString(R.string.welcome_back, currentUser.name)
         profileInfoText.text = getString(
             R.string.profile_info_format,
             currentUser.name,
             currentUser.email,
-            currentUser.age,
+            displayAge,
             currentUser.gender,
             currentUser.height,
             currentUser.weight
@@ -522,6 +552,7 @@ class MainActivity : AppCompatActivity() {
             email = resetEmail,
             onSuccess = {
                 forgotPasswordOverlay.visibility = View.GONE
+                loginScreen.visibility = View.VISIBLE
                 Toast.makeText(this, getString(R.string.reset_link_sent), Toast.LENGTH_SHORT).show()
             },
             onFailure = { error ->
@@ -561,7 +592,10 @@ class MainActivity : AppCompatActivity() {
                 currentUser = user.copy(
                     name = user.name.ifBlank { currentUser.name },
                     email = user.email.ifBlank { currentUser.email },
-                    age = user.age.ifBlank { currentUser.age },
+                    age = user.age.ifBlank {
+                        calculateAgeFromBirthDate(user.birthDate).ifBlank { currentUser.age }
+                    },
+                    birthDate = user.birthDate.ifBlank { currentUser.birthDate },
                     gender = user.gender.ifBlank { currentUser.gender },
                     height = user.height.ifBlank { currentUser.height },
                     weight = user.weight.ifBlank { currentUser.weight }
@@ -589,7 +623,7 @@ class MainActivity : AppCompatActivity() {
         personalInfoScreen.visibility = View.VISIBLE
         personalNameInput.setText(name)
         personalEmailInput.setText(email)
-        personalAgeInput.setText(currentUser.age)
+        personalAgeInput.setText(currentUser.birthDate)
         personalGenderInput.setText(currentUser.gender)
         personalHeightInput.setText(currentUser.height)
         personalWeightInput.setText(currentUser.weight)
@@ -607,7 +641,10 @@ class MainActivity : AppCompatActivity() {
         currentUser = currentUser.copy(
             name = personalNameInput.text.toString().trim().ifBlank { currentUser.name },
             email = personalEmailInput.text.toString().trim().ifBlank { currentUser.email },
-            age = personalAgeInput.text.toString().trim().ifBlank { currentUser.age },
+            birthDate = personalAgeInput.text.toString().trim().ifBlank { currentUser.birthDate },
+            age = calculateAgeFromBirthDate(
+                personalAgeInput.text.toString().trim().ifBlank { currentUser.birthDate }
+            ),
             gender = personalGenderInput.text.toString().trim().ifBlank { currentUser.gender },
             height = personalHeightInput.text.toString().trim().ifBlank { currentUser.height },
             weight = personalWeightInput.text.toString().trim().ifBlank { currentUser.weight }
@@ -617,8 +654,63 @@ class MainActivity : AppCompatActivity() {
         pendingRegisterUid = null
     }
 
+    private fun showGenderPicker(target: EditText) {
+        val genderOptions = resources.getStringArray(R.array.gender_options)
+        AlertDialog.Builder(this)
+            .setItems(genderOptions) { _, which ->
+                target.setText(genderOptions[which])
+            }
+            .show()
+    }
+
+    private fun showBirthDatePicker(target: EditText) {
+        val calendar = parseBirthDate(target.text.toString()) ?: Calendar.getInstance().apply {
+            add(Calendar.YEAR, -18)
+        }
+
+        DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                val selectedDate = Calendar.getInstance().apply {
+                    set(year, month, dayOfMonth)
+                }
+                target.setText(formatBirthDate(selectedDate))
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    private fun formatBirthDate(calendar: Calendar): String {
+        return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(calendar.time)
+    }
+
+    private fun parseBirthDate(value: String): Calendar? {
+        if (value.isBlank()) return null
+        return runCatching {
+            val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(value) ?: return null
+            Calendar.getInstance().apply { time = date }
+        }.getOrNull()
+    }
+
+    private fun calculateAgeFromBirthDate(birthDate: String): String {
+        val birthCalendar = parseBirthDate(birthDate) ?: return ""
+        val today = Calendar.getInstance()
+        var age = today.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
+
+        if (
+            today.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
+            (today.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
+                today.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))
+        ) {
+            age -= 1
+        }
+
+        return age.coerceAtLeast(0).toString()
+    }
+
     private enum class Section {
         HOME, START, HISTORY, PROFILE
     }
 }
-
