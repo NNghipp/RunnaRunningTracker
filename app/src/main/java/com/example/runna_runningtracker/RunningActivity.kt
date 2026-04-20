@@ -104,7 +104,7 @@ class RunningActivity : AppCompatActivity() {
 
             val userWeight = UserPrefsManager.getUserWeightOrNull(this)
 
-            if (userWeight != null && userWeight > 0) {
+            calories = if (userWeight != null && userWeight > 0) {
                 (1.036 * userWeight * distanceKm).toInt()
             } else {
                 (distanceKm * 60).toInt()
@@ -186,29 +186,44 @@ class RunningActivity : AppCompatActivity() {
                 userMarker.icon = getDrawable(org.osmdroid.library.R.drawable.marker_default)
 
                 // DISTANCE
-                lastLocation?.let {
-                    val distance = it.distanceTo(location)
-                    if (distance in 2f..30f) {
-                        totalDistance += distance
-                    }
-                }
 
                 if (lastLocation == null) {
                     mapView.controller.setZoom(18.0)
                     mapView.controller.setCenter(geoPoint)
+
+                    polyline.addPoint(geoPoint)
+                    mapView.invalidate()
+
+                    lastLocation = location
                 } else {
-                    mapView.controller.animateTo(geoPoint)
+
+                    val distance = lastLocation!!.distanceTo(location)
+
+                    if (distance in 2f..30f) {
+                        totalDistance += distance
+                        polyline.addPoint(geoPoint)
+                        mapView.invalidate()
+                        mapView.controller.animateTo(geoPoint)
+                        lastLocation = location
+                    }
                 }
 
-                lastLocation = location
 
-                polyline.addPoint(geoPoint)
-                mapView.invalidate()
+//                if (lastLocation == null) {
+//                    mapView.controller.setZoom(18.0)
+//                    mapView.controller.setCenter(geoPoint)
+//                } else {
+//                    mapView.controller.animateTo(geoPoint)
+//                }
+
+
+//                polyline.addPoint(geoPoint)
+//                mapView.invalidate()
 
                 val distanceKm = totalDistance / 1000.0
                 tvDistanceMain.text = String.format("%.2f", distanceKm)
 
-                 calories = (distanceKm * 60).toInt()
+                calories = (distanceKm * 60).toInt()
                 tvCaloriesMain.text = calories.toString()
 
                 if (distanceKm > 0.05) {
